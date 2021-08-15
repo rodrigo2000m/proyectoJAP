@@ -67,6 +67,7 @@ footer p {
   color: black;
 }
 /*Este codigo es para el menu de navegacion*/
+/*Como sacar el subrayado?*/
 nav>div>a{
   width: 20%;
   text-align: center;
@@ -76,7 +77,7 @@ nav>div>a:hover{
   transition: 0,5s;
 }
 nav>div>a:active{
-  background: black;
+  background:grey;
   color: white;
 }
 
