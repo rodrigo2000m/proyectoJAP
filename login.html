@@ -55,10 +55,27 @@ div.col-12{
   align-items: center;
   padding: 10px;
 }
-
-
-    
   </style>
+<script>
+  //Utilizo el codigo de otro ejercicio para guardar el nombre de usuario
+  function guardar(userName, pwd){  
+    if (userName.trim()==="" || pwd.trim()===""){ //Chequea que el dato recibido no esté vacío. 
+     //El método trim elimina los espacios en blanco al inicio y al final del mismo.
+    alert("El dato está vacío");
+    }    else{
+    localStorage.setItem("usuario", userName.trim()); //setItem almacena el dato en la posición "usuario"
+    localStorage.setItem("password", pwd.trim()); // Almaceno la contraseña
+    sessionStorage.setItem("usuario", userName.trim());
+    alert (" Usuario : " + userName + " Password : " + pwd ); 
+    
+    location.href="index.html";
+
+//getItem obtiene el dato almacenado en la posición "usuario"
+
+}
+}
+</script>
+
 </head>
 <div id="login" class="signin">
   <div class="col-12">
@@ -74,7 +91,7 @@ div.col-12{
       <label for="pwd">Password:</label>
       <input type="password" class="form-control" placeholder="Ingrese su contraseña" id="pwd">
     </div>
-    <button type="submit" class="btn-primary">Entrar</button>
+    <button onclick="guardar(userName.value, pwd.value)" type="submit" class="btn btn-secondary">Entrar</button>
   </form>
 </div>
 
