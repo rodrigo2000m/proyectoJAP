@@ -66,6 +66,22 @@ footer p {
 .site-header .dropdown-menu a {
   color: black;
 }
+/*Este codigo es para el menu de navegacion*/
+nav>div>a{
+  width: 20%;
+  text-align: center;
+}
+nav>div>a:hover{
+  background-color: black;
+  transition: 0,5s;
+}
+nav>div>a:active{
+  background: black;
+  color: white;
+}
+
+
+
 
 .dropzone{
   border: 2px dashed #0087F7;
