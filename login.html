@@ -27,7 +27,10 @@
       align-items: center;
       padding-top: 40px;
       padding-bottom: 40px;
-      background-color: #f5f5f5;
+      /*background-color: #f5f5f5;*/
+      background-image: url('/img/fondo.jpg');
+      background-size:100%;
+      background-position: center;
     }
 
     .signin {
@@ -36,16 +39,13 @@
       max-width: 330px;
       padding: 15px;
       margin: auto;
-    }
-    div#login{
+      /*Codigo que agregue*/
+      background-color:grey;
       color: white;
-      padding: 20px;
-      border: gray solid 5px;
-      border-radius: 10%;
+      border-radius: 2%;
       align-items: center;
-      background-color: grey;
-      
     }
+    
   i{
     margin: auto;  
     
@@ -77,7 +77,9 @@ div.col-12{
 <div id="login" class="signin">
   <div class="col-12">
     <i class="fas fa-user-circle fa-4x"></i>
-    <h1>Login user</h1>
+  </div>
+  <div class="row">
+    <img src="/img/login.png" style="width: 100%;;" alt="">
   </div>
   <form id="login_form" action="">
     <div class="form-group">

@@ -47,7 +47,7 @@
 
 footer {
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3rems;
 }
 
 footer p {
@@ -67,7 +67,7 @@ footer p {
   color: black;
 }
 /*Este codigo es para el menu de navegacion*/
-/*Como sacar el subrayado?*/
+/*Como sacar el subrayado*/
 nav>div>a{
   width: 20%;
   text-align: center;
@@ -81,6 +81,7 @@ nav>div>a:active{
   background:grey;
   color: white;
 }
+
 
 
 

@@ -15,11 +15,12 @@
   </head>
   <body>
     <script>
+      //Guardo el nombre en una variable y la uso para checkear si esta completa o no(estoy repitiendo lo del login)
       var usuario = localStorage.getItem("usuario"); 
       if(usuario===null){
         window.location="login.html";
       } else{
-        alert('Bienvenido/a '+usuario);
+        //alert('Bienvenido/a '+usuario);
       };
 
     </script>
