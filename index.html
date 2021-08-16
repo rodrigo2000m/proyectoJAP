@@ -15,9 +15,16 @@
   </head>
   <body>
     <script>
+      //Estuve intentando que me direccione al login cuando no tengo datos pero no pude
+      var usuario = localStorage.getItem("usuario"); 
+      if(usuario.length===0){
+        window.location="login.html";
+      } else{
+        alert("Hola "+ usuario);
+        localStorage.removeItem("usuario");
+      }
+      
      
-      window.location="login.html"
-    
     
     </script>
     <nav class="site-header sticky-top py-1 bg-dark">
