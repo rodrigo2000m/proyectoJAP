@@ -60,7 +60,7 @@ div.col-12{
   //Utilizo el codigo de otro ejercicio para guardar el nombre de usuario
   function guardar(userName, pwd){  
     if (userName.trim()==="" || pwd.trim()===""){ //Chequea que el dato recibido no esté vacío. 
-     //El método trim elimina los espacios en blanco al inicio y al final del mismo.
+    //El método trim elimina los espacios en blanco al inicio y al final del mismo.
     alert("El dato está vacío");
     }    else{
     localStorage.setItem("usuario", userName.trim()); //setItem almacena el dato en la posición "usuario"
@@ -68,10 +68,9 @@ div.col-12{
     sessionStorage.setItem("usuario", userName.trim());
     alert (" Usuario : " + userName + " Password : " + pwd ); 
     window.open("index.html");
+    }
+  }
 
-}
-
-}
 </script>
 
 </head>
