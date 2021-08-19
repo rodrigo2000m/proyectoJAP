@@ -81,9 +81,10 @@ nav>div>a:active{
   background:grey;
   color: white;
 }
-
-
-
+/*Puse las letras mas chicas*/
+.py-2{
+  font-size:small;
+}
 
 
 .dropzone{

@@ -47,39 +47,25 @@
     }
     
   i{
-    margin: auto;  
-    
+    margin: auto; 
   }
 div.col-12{
   display: flex;
   align-items: center;
   padding: 10px;
 }
+#login_form{
+  margin: 20px;
+}
   </style>
-<script>
-  //Utilizo el codigo de otro ejercicio para guardar el nombre de usuario
-  function guardar(userName, pwd){  
-    if (userName.trim()==="" || pwd.trim()===""){ //Chequea que el dato recibido no esté vacío. 
-    //El método trim elimina los espacios en blanco al inicio y al final del mismo.
-    alert("El dato está vacío");
-    }    else{
-    localStorage.setItem("usuario", userName.trim()); //setItem almacena el dato en la posición "usuario"
-    localStorage.setItem("password", pwd.trim()); // Almaceno la contraseña
-    sessionStorage.setItem("usuario", userName.trim());
-    alert (" Usuario : " + userName + " Password : " + pwd ); 
-    window.open("index.html");
-    }
-  }
-
-</script>
 
 </head>
-<div id="login" class="signin">
+<div id="login" class="signin bg-dark">
   <div class="col-12">
     <i class="fas fa-user-circle fa-4x"></i>
   </div>
   <div class="row">
-    <img src="/img/login.png" style="width: 100%;;" alt="">
+    <img src="/img/login.png" style="width: 100%;;" alt="Imagen del e-commerce">
   </div>
   <form id="login_form" action="">
     <div class="form-group">
@@ -87,12 +73,13 @@ div.col-12{
       <input type="text" id="userName" class="form-control" placeholder="Ingrese su usuario">
     </div>
     <div class="form-group">
-      <label for="pwd">Password:</label>
+      <label for="pwd">Contraseña:</label>
       <input type="password" class="form-control" placeholder="Ingrese su contraseña" id="pwd">
     </div>
     <button onclick="guardar(userName.value, pwd.value)" type="submit" class="btn btn-secondary">Entrar</button>
   </form>
 </div>
+
 
 
 

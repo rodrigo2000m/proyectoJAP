@@ -44,4 +44,6 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-});
+  //Guardo el nombre en una variable y la uso para checkear si esta completa o no(estoy repitiendo lo del login)
+
+});  

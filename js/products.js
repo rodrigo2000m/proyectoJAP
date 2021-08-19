@@ -22,7 +22,7 @@ function showProducts(array){
                         </div>
                         <p class="mb-1">` + products.description + `</p>
                         <p class="mb-1">` +"Precio: "+products.cost+" " +products.currency + `</p>
-                        <p class="mb-1">` +"Productos vendido: "+ products.soldCount + `</p>
+                        <p class="mb-1">` +"Productos vendidos: "+ products.soldCount + `</p>
                     </div>
                 </div>
             </a>
