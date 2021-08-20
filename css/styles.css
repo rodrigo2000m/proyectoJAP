@@ -75,11 +75,10 @@ nav>div>a{
 nav>div>a:hover{
   background-color: black;
   transition: 0,5s;
-  text-decoration: none ;
+  text-decoration: none;
 }
 nav>div>a:active{
   background:grey;
-  color: white;
 }
 
 
