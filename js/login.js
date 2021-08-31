@@ -11,10 +11,7 @@
         pwd: pwd
       };
       localStorage.setItem('usuario', JSON.stringify(datosUsuario));
-
-
-    /*localStorage.setItem("usuario", userName); 
-    localStorage.setItem("password", pwd); */
+      
     alert ("Bienvenido/a " + datosUsuario.name); 
     window.open("index.html");
     }

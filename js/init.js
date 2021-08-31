@@ -56,15 +56,12 @@ if(usuario==null){
     window.location="login.html"
   },2000)
 }else{
-  /*localStorage.setItem('usuario', JSON.stringify(datosUsuario));
-  persona = JSON.parse(localStorage.getItem('usuario'));*/
   usuario=JSON.parse(localStorage.getItem('usuario'))
   let htmlContentToAppend=`
     <a class="d-none d-md-inline-block text-white btn" href="my-profile.html" ><i class="fas fa-user"></i>`+"  "+usuario.name+`</a>
     
     <button onclick="CloseSession()" class="btn px-3 mx-5 bg-dark text-white">Salir</button>
     `
-    //Falta agregar la funcion para que salga el usuario
     document.getElementById('user-profile').innerHTML= htmlContentToAppend;
 }
 
