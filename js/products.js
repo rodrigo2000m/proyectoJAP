@@ -4,21 +4,16 @@
 
 
 //Entrega1: Creo una funcion que devuelva los productos
-let productsArray=[]
-function showProducts(array){
+let productsArray = []
+function showProducts(array) {
     let htmlContentToAppend = "";
-    let arrayFiltrado= array.filter(product=>
-        ((minCost == undefined) || (minCost != undefined && product.cost>=minCost)) && 
-        ((maxCost == undefined) || (maxCost != undefined && product.cost<=maxCost))
-        );    
-    for(let i=0; i<arrayFiltrado.length;i++){
-        let products=arrayFiltrado[i];
-        filtro=document.getElementById("searchInputFilter").value.toUpperCase();
-        if(products.name.toUpperCase().indexOf(filtro)>-1 || products.description.toUpperCase().indexOf(filtro)>-1 ){
-        /*let products=array[i]
+    for (let i = 0; i < array.length; i++) {
+        let products = array[i];
         if (((minCost == undefined) || (minCost != undefined && parseInt(products.cost) >= minCost)) &&
-            ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))){ }*/
-        htmlContentToAppend +=`
+            ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))) {
+            let filtro = document.getElementById("searchInputFilter").value.toUpperCase();
+            if (products.name.toUpperCase().indexOf(filtro) != -1 || products.description.toUpperCase().indexOf(filtro) != -1) {
+                htmlContentToAppend += `
         <a href="products-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
@@ -26,62 +21,64 @@ function showProducts(array){
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ products.name +`</h4>
+                            <h4 class="mb-1">`+ products.name + `</h4>
                             <small class="text-muted">` + products.soldCount + ` artículos vendidos</small>
                         </div>
                         <p class="mb-1">` + products.description + `</p>
-                        <p class="mb-1">` + products.cost+" " +products.currency + `</p>
+                        <p class="mb-1">` + products.cost + " " + products.currency + `</p>
                     </div>
                 </div>
             </a>
-        `;}
+        `;
+            }
+        }
         document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
     };
-    
+
 };
 
 //Entrega 2
 //Criterios para ordenar
-const ORDER_ASC_BY_COST="AscCost";
-const ORDER_DESC_BY_COST="DescCost";
-const ORDER_BY_RELEVANCE="Relevancia";
-let currentProductArray=[];
-let currentSortCriteria= undefined;
-let minCost= undefined;
-let maxCost= undefined;
+const ORDER_ASC_BY_COST = "AscCost";
+const ORDER_DESC_BY_COST = "DescCost";
+const ORDER_BY_RELEVANCE = "Relevancia";
+let currentProductArray = [];
+let currentSortCriteria = undefined;
+let minCost = undefined;
+let maxCost = undefined;
 //Funcion que ordena
-function sortProducts(criteria, array){
-    let result=[];
-    if (criteria===ORDER_ASC_BY_COST){
-        result=array.sort(function(a, b){
-            if(parseInt(a.cost)<parseInt(b.cost)){return -1;}
-            else if(parseInt(a.cost)>parseInt(b.cost)){return 1;}
-            else{return 0};
+function sortProducts(criteria, array) {
+    let result = [];
+    if (criteria === ORDER_ASC_BY_COST) {
+        result = array.sort(function (a, b) {
+            if (parseInt(a.cost) < parseInt(b.cost)) { return -1; }
+            else if (parseInt(a.cost) > parseInt(b.cost)) { return 1; }
+            else { return 0 };
         })
-    }else if(criteria===ORDER_DESC_BY_COST){
-        result=array.sort(function(a, b){
-            if(parseInt(a.cost)>parseInt(b.cost)){return -1;}
-            else if(parseInt(a.cost)<parseInt(b.cost)){return 1;}
-            else{return 0};
+    } else if (criteria === ORDER_DESC_BY_COST) {
+        result = array.sort(function (a, b) {
+            if (parseInt(a.cost) > parseInt(b.cost)) { return -1; }
+            else if (parseInt(a.cost) < parseInt(b.cost)) { return 1; }
+            else { return 0 };
         })
-    }else if(criteria===ORDER_BY_RELEVANCE){
-        result=array.sort(function(a, b){
-            if( parseInt(a.soldCount) > parseInt(b.soldCount)){return -1;}
-            else if( parseInt(a.soldCount) < parseInt(b.soldCount)){return 1;}
-            else{return 0};
+    } else if (criteria === ORDER_BY_RELEVANCE) {
+        result = array.sort(function (a, b) {
+            if (parseInt(a.soldCount) > parseInt(b.soldCount)) { return -1; }
+            else if (parseInt(a.soldCount) < parseInt(b.soldCount)) { return 1; }
+            else { return 0 };
         })
     };
     //obtengo el array ordenado con el criterio elegido
     return result
 }
 
-function sortAndShowProducts(sortCriteria, productsArray){
+function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
 
-    if(productsArray != undefined){
+    if (productsArray != undefined) {
         currentProductArray = productsArray;
     };
-    currentProductArray=sortProducts(currentSortCriteria, currentProductArray);
+    currentProductArray = sortProducts(currentSortCriteria, currentProductArray);
 
     showProducts(currentProductArray);
 }
@@ -93,39 +90,39 @@ function sortAndShowProducts(sortCriteria, productsArray){
 
 document.addEventListener("DOMContentLoaded", function (e) {
     //Obtengo los datos del json y los ordeno en orden ascendente de costo
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
             sortAndShowProducts(ORDER_BY_RELEVANCE, resultObj.data);
         };
     })
 
     //Al darle click cambia el orden dependiendo de la condicion
-    document.getElementById("sortAsc").addEventListener("click", function(){
+    document.getElementById("sortAsc").addEventListener("click", function () {
         sortAndShowProducts(ORDER_ASC_BY_COST, currentProductArray);
     });
-    document.getElementById("sortDesc").addEventListener("click", function(){
+    document.getElementById("sortDesc").addEventListener("click", function () {
         sortAndShowProducts(ORDER_DESC_BY_COST, currentProductArray);
     });
-    document.getElementById("sortByRelevance").addEventListener("click", function(){
+    document.getElementById("sortByRelevance").addEventListener("click", function () {
         sortAndShowProducts(ORDER_BY_RELEVANCE, currentProductArray);
     });
 
-    document.getElementById("rangeFilterCost").addEventListener("click", function(){
-        //Ingreso maximo y minismo 
+    document.getElementById("rangeFilterCost").addEventListener("click", function () {
+        //Ingreso maximo y minimo 
         minCost = document.getElementById("rangeFilterCostMin").value;
         maxCost = document.getElementById("rangeFilterCostMax").value;
 
-        if ((minCost != undefined) && (minCost != "") && (parseInt(minCost)) >= 0){
+        if ((minCost != undefined) && (minCost != "") && (parseInt(minCost)) >= 0) {
             minCost = parseInt(minCost);
         }
-        else{
+        else {
             minCost = undefined;
         }
 
-        if ((maxCost != undefined) && (maxCost != "") && (parseInt(maxCost)) >= 0){
+        if ((maxCost != undefined) && (maxCost != "") && (parseInt(maxCost)) >= 0) {
             maxCost = parseInt(maxCost);
         }
-        else{
+        else {
             maxCost = undefined;
         }
         //Utilizo el criterio que este seleccionado previamente y al nuevo array
@@ -135,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
     //Borro los minCost y maxCost y vacio las variables
-    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+    document.getElementById("clearRangeFilter").addEventListener("click", function () {
         document.getElementById("rangeFilterCostMin").value = "";
         document.getElementById("rangeFilterCostMax").value = "";
 

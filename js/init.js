@@ -44,25 +44,29 @@ var getJSONData = function(url){
 
 
 function CloseSession(){
+  alert("Nos vemos "+usuario.name);
   localStorage.removeItem(`usuario`);
   window.location.href="login.html";
 }
 
 
-setTimeout(function(){
-  var usuario = localStorage.getItem("usuario"); 
-  if(usuario===null){
-  window.location="login.html";
-  } else{
-    let htmlContentToAppend=`
-    <a class="d-none d-md-inline-block text-white btn" href="my-profile.html" ><i class="fas fa-user"></i>`+"  "+usuario+`</a>
+var usuario = localStorage.getItem("usuario");
+if(usuario==null){
+  setTimeout(function(){
+    window.location="login.html"
+  },2000)
+}else{
+  /*localStorage.setItem('usuario', JSON.stringify(datosUsuario));
+  persona = JSON.parse(localStorage.getItem('usuario'));*/
+  usuario=JSON.parse(localStorage.getItem('usuario'))
+  let htmlContentToAppend=`
+    <a class="d-none d-md-inline-block text-white btn" href="my-profile.html" ><i class="fas fa-user"></i>`+"  "+usuario.name+`</a>
     
     <button onclick="CloseSession()" class="btn px-3 mx-5 bg-dark text-white">Salir</button>
     `
     //Falta agregar la funcion para que salga el usuario
     document.getElementById('user-profile').innerHTML= htmlContentToAppend;
-  };
-  },2000);
+}
 
   
 //Función que se ejecuta una vez que se haya lanzado el evento de
