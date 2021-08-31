@@ -3,12 +3,21 @@
 //elementos HTML presentes.
 
 
-//Creo una funcion que devuelva los productos
+//Entrega1: Creo una funcion que devuelva los productos
 let productsArray=[]
 function showProducts(array){
     let htmlContentToAppend = "";
-    for(let i=0; i<array.length;i++){
-        let products=array[i];
+    let arrayFiltrado= array.filter(product=>
+        ((minCost == undefined) || (minCost != undefined && product.cost>=minCost)) && 
+        ((maxCost == undefined) || (maxCost != undefined && product.cost<=maxCost))
+        );    
+    for(let i=0; i<arrayFiltrado.length;i++){
+        let products=arrayFiltrado[i];
+        filtro=document.getElementById("searchInputFilter").value.toUpperCase();
+        if(products.name.toUpperCase().indexOf(filtro)>-1 || products.description.toUpperCase().indexOf(filtro)>-1 ){
+        /*let products=array[i]
+        if (((minCost == undefined) || (minCost != undefined && parseInt(products.cost) >= minCost)) &&
+            ((maxCost == undefined) || (maxCost != undefined && parseInt(products.cost) <= maxCost))){ }*/
         htmlContentToAppend +=`
         <a href="products-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
@@ -25,22 +34,117 @@ function showProducts(array){
                     </div>
                 </div>
             </a>
-        `;
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        `;}
+        document.getElementById("product-list-container").innerHTML = htmlContentToAppend;
     };
     
 };
 
+//Entrega 2
+//Criterios para ordenar
+const ORDER_ASC_BY_COST="AscCost";
+const ORDER_DESC_BY_COST="DescCost";
+const ORDER_BY_RELEVANCE="Relevancia";
+let currentProductArray=[];
+let currentSortCriteria= undefined;
+let minCost= undefined;
+let maxCost= undefined;
+//Funcion que ordena
+function sortProducts(criteria, array){
+    let result=[];
+    if (criteria===ORDER_ASC_BY_COST){
+        result=array.sort(function(a, b){
+            if(parseInt(a.cost)<parseInt(b.cost)){return -1;}
+            else if(parseInt(a.cost)>parseInt(b.cost)){return 1;}
+            else{return 0};
+        })
+    }else if(criteria===ORDER_DESC_BY_COST){
+        result=array.sort(function(a, b){
+            if(parseInt(a.cost)>parseInt(b.cost)){return -1;}
+            else if(parseInt(a.cost)<parseInt(b.cost)){return 1;}
+            else{return 0};
+        })
+    }else if(criteria===ORDER_BY_RELEVANCE){
+        result=array.sort(function(a, b){
+            if( parseInt(a.soldCount) > parseInt(b.soldCount)){return -1;}
+            else if( parseInt(a.soldCount) < parseInt(b.soldCount)){return 1;}
+            else{return 0};
+        })
+    };
+    //obtengo el array ordenado con el criterio elegido
+    return result
+}
+
+function sortAndShowProducts(sortCriteria, productsArray){
+    currentSortCriteria = sortCriteria;
+
+    if(productsArray != undefined){
+        currentProductArray = productsArray;
+    };
+    currentProductArray=sortProducts(currentSortCriteria, currentProductArray);
+
+    showProducts(currentProductArray);
+}
+
+
+
+
 
 
 document.addEventListener("DOMContentLoaded", function (e) {
+    //Obtengo los datos del json y los ordeno en orden ascendente de costo
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            productsArray = resultObj.data;
-
-            showProducts(productsArray);
+            sortAndShowProducts(ORDER_BY_RELEVANCE, resultObj.data);
         };
-    
     })
-});
 
+    //Al darle click cambia el orden dependiendo de la condicion
+    document.getElementById("sortAsc").addEventListener("click", function(){
+        sortAndShowProducts(ORDER_ASC_BY_COST, currentProductArray);
+    });
+    document.getElementById("sortDesc").addEventListener("click", function(){
+        sortAndShowProducts(ORDER_DESC_BY_COST, currentProductArray);
+    });
+    document.getElementById("sortByRelevance").addEventListener("click", function(){
+        sortAndShowProducts(ORDER_BY_RELEVANCE, currentProductArray);
+    });
+
+    document.getElementById("rangeFilterCost").addEventListener("click", function(){
+        //Ingreso maximo y minismo 
+        minCost = document.getElementById("rangeFilterCostMin").value;
+        maxCost = document.getElementById("rangeFilterCostMax").value;
+
+        if ((minCost != undefined) && (minCost != "") && (parseInt(minCost)) >= 0){
+            minCost = parseInt(minCost);
+        }
+        else{
+            minCost = undefined;
+        }
+
+        if ((maxCost != undefined) && (maxCost != "") && (parseInt(maxCost)) >= 0){
+            maxCost = parseInt(maxCost);
+        }
+        else{
+            maxCost = undefined;
+        }
+        //Utilizo el criterio que este seleccionado previamente y al nuevo array
+        sortAndShowProducts(currentSortCriteria, currentProductArray);
+    });
+
+
+
+    //Borro los minCost y maxCost y vacio las variables
+    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+        document.getElementById("rangeFilterCostMin").value = "";
+        document.getElementById("rangeFilterCostMax").value = "";
+
+        minCost = undefined;
+        maxCost = undefined;
+
+        sortAndShowProducts(currentSortCriteria, currentProductArray)
+    });
+
+
+
+});

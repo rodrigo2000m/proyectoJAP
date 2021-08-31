@@ -40,6 +40,31 @@ var getJSONData = function(url){
     });
 }
 
+//Queria que la pagina demorara algunos segundo en enviar a login
+
+
+function CloseSession(){
+  localStorage.removeItem(`usuario`);
+  window.location.href="login.html";
+}
+
+
+setTimeout(function(){
+  var usuario = localStorage.getItem("usuario"); 
+  if(usuario===null){
+  window.location="login.html";
+  } else{
+    let htmlContentToAppend=`
+    <a class="d-none d-md-inline-block text-white btn" href="my-profile.html" ><i class="fas fa-user"></i>`+"  "+usuario+`</a>
+    
+    <button onclick="CloseSession()" class="btn px-3 mx-5 bg-dark text-white">Salir</button>
+    `
+    //Falta agregar la funcion para que salga el usuario
+    document.getElementById('user-profile').innerHTML= htmlContentToAppend;
+  };
+  },2000);
+
+  
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.

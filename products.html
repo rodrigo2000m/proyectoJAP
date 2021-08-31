@@ -14,6 +14,20 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
+    <div class="container-fluid bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-3 my-2">
+            <input class="form-control rounded" type="search" name="" id="" placeholder="Buscar">
+          </div>
+          <div class="col-6"></div>
+          <div class="col-3 my-1">
+            <div id="user-profile"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav class="site-header sticky-top py-1 bg-dark">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -34,17 +48,62 @@
     
     </div>
 -->
+<main role="main" class="pb-5">
 <div class="text-center p-4">
   <h2>Productos</h2>
   <p class="lead">Verás aquí todas los productos del sitio.</p>
 </div>
+
+<!--Filtros-->
 <div class="container">
   <div class="row">
-    <div class="list-group" id="cat-list-container">
+      <div class="col text-right">
+          <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+              <label class="btn btn-light" id="sortAsc" >
+                  <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-dollar-sign"></i><i class="fas fa-sort-numeric-down"></i>Precio ascendente
+              </label>
+              <label class="btn btn-light" id="sortDesc" >
+                  <input type="radio" name="options" autocomplete="off"><i class="fas fa-dollar-sign"></i><i class="fas fa-sort-numeric-down-alt"></i>Precio descendente
+              </label>
+              <label class="btn btn-light active" id="sortByRelevance" >
+                  <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia
+              </label>
+          </div>
+      </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-md-6">
+      <input class="form-control" onkeyup="showProducts(currentProductArray)" type="search" name="" id="searchInputFilter" placeholder="Buscar">
     </div>
+      <div class="col-md-6 col-sm-12 mb-1 container">
+        <div class="row container p-0 m-0">
+          <div class="col">
+            <p class="font-weight-normal text-right my-2">Precio</p>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMin">
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMax">
+          </div>
+          <div class="col-3 p-0">
+            <div class="btn-group" role="group">
+              <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
+              <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+<!--Lugar donde se agrega lo que viene del json-->  
+
+  <div class="row">
+    <div class="list-group" id="product-list-container">
+    </div>
+
 </div>
-</div>
-    
+</main>  
 
     <footer class="text-muted bg-light">
       <div class="container">

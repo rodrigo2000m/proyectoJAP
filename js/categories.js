@@ -40,9 +40,12 @@ function showCategoriesList(){
     let htmlContentToAppend = "";
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
+        filtro=document.getElementById("searchInputFilter").value.toUpperCase();
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))
+            &&(category.name.toUpperCase().indexOf(filtro)>-1 || category.description.toUpperCase().indexOf(filtro)>-1 ))
+            {
 
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
