@@ -50,7 +50,7 @@ function CloseSession(){
 }
 
 
-var usuario = localStorage.getItem("usuario");
+let usuario = localStorage.getItem("usuario");
 if(usuario==null){
   setTimeout(function(){
     window.location="login.html"
