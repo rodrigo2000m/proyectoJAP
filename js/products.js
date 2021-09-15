@@ -14,7 +14,7 @@ function showProducts(array) {
             let filtro = document.getElementById("searchInputFilter").value.toUpperCase();
             if (products.name.toUpperCase().indexOf(filtro) != -1 || products.description.toUpperCase().indexOf(filtro) != -1) {
                 htmlContentToAppend += `
-        <a href="product-info.html" class="list-group-item list-group-item-action">
+        <a onclick="goToProduct('${products.name}')" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
                         <img src="${products.imgSrc}" alt="${products.description}" class="img-thumbnail">
@@ -36,6 +36,11 @@ function showProducts(array) {
     };
 
 };
+//agregue esta funcion que guardara el nombre del producto que hago click y redirecciona
+function goToProduct(nameProduct){
+    localStorage.setItem('nameProduct', JSON.stringify(nameProduct));
+    window.location.href="product-info.html";
+}
 
 //Entrega 2
 //Criterios para ordenar
