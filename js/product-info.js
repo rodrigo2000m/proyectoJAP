@@ -2,24 +2,34 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 
-//JSONs con cada producto (solo cambia el nombre del producto)
-//Codigo para la parte de products-info
+//JSONs con cada producto y sus comentarios "use como id el nombre"
 const PRODUCT_INFO_URL_LIST =[
-    {name: "Chevrolet Onix Joy", link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Chevrolet.json"},
-    {name: "Fiat Way", link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Fiat.json"},
-    {name: "Peugeot 208", link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Peougeot.json"},
-    {name: "Suzuki Celerio", link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Suzuki.json"},
+    {name: "Chevrolet Onix Joy",
+    link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Chevrolet.json",
+    linkToComment:"https://rodrigo2000m.github.io/proyectoJAP/js/API/ChevroletComments.json"},
+    {name: "Fiat Way",
+    link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Fiat.json",
+    linkToComment:"https://rodrigo2000m.github.io/proyectoJAP/js/API/FiatComments.json"},
+    {name: "Peugeot 208",
+    link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Peugeot.json",
+    linkToComment:"https://rodrigo2000m.github.io/proyectoJAP/js/API/PeugeotComments.json"},
+    {name: "Suzuki Celerio",
+    link:"https://rodrigo2000m.github.io/proyectoJAP/js/API/Suzuki.json",
+    linkToComment:"https://rodrigo2000m.github.io/proyectoJAP/js/API/SuzukiComments.json"}
   ];
   let PRODUCT_INFO_URL_NEW="";
+  let PRODUCT_INFO_COMMENTS_URL_NEW="";
   function elegirProduct(){
     let nameProduct=JSON.parse(localStorage.getItem('nameProduct'));
     for(let i=0; i<PRODUCT_INFO_URL_LIST.length;i++){
         if(PRODUCT_INFO_URL_LIST[i].name===nameProduct){
             PRODUCT_INFO_URL_NEW+=PRODUCT_INFO_URL_LIST[i].link;
+            PRODUCT_INFO_COMMENTS_URL_NEW+=PRODUCT_INFO_URL_LIST[i].linkToComment;
         }
     }
   };
   elegirProduct();
+  
 
 //esta funcion agrega el contenido del carusel, recorre un array con imagenes
 function createCarusel(array) {
@@ -249,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             cargarInfoProducto(resultObj.data)
         }
-        getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
+        getJSONData(PRODUCT_INFO_COMMENTS_URL_NEW).then(function (resultObj) {
             if (resultObj.status === "ok") {
                 cargarComentarios(resultObj.data);
             }

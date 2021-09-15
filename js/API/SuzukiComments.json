@@ -1,24 +1,24 @@
 [{
     "score": 2,
-    "description": "Ya llevo un año con este auto y la verdad que tiene sus ventajas y desventajas",
+    "description": "Ya llevo un año con este auto y la verdad que no lo recomiendo, los primeros 6 meses anduvo bien, pero cuando comienza a fallar no para",
     "user": "juan_pedro",
     "dateTime": "2020-02-25 18:03:52"
 },
 {
     "score": 1,
-    "description": "Es un auto muy cómodo y en relación precio/calidad vale la pena!",
+    "description": "Hace una semana lo compré y ya estoy en el macánico, no lo compren",
     "user": "maria_sanchez",
     "dateTime": "2020-01-17 13:42:18"
 },
 {
-    "score": 2,
-    "description": "Casi todo bien!, excepto por algún detalle de gusto personal",
+    "score": 5,
+    "description": "Todo bien! La mejor relación calidad precio",
     "user": "paola_perez",
     "dateTime": "2020-03-14 09:05:13"
 },
 {
     "score": 4,
-    "description": "Un espectáculo el auto!",
+    "description": "Un espectáculo el auto! Lo voy a recomendar a mis conocidos",
     "user": "pablo_gomez",
     "dateTime": "2020-02-21 15:05:22"
 }]
