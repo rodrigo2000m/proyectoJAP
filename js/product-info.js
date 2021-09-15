@@ -160,9 +160,12 @@ function cargarStars(number) {
 function cargarComentarios(array) {
     //lo que esta en el localStorage como comment se agrega al array
     comment=JSON.parse(localStorage.getItem('comment'));
+    productName=JSON.parse(localStorage.getItem('nameProduct'));
     if(comment!=null){
         for(let i=0;i<comment.length;i++){
-            array.unshift(comment[i])
+            if(comment[i].nameProduct===productName){
+                array.unshift(comment[i])
+            }
         }
     }
     //encabezado de comentarios
@@ -189,7 +192,7 @@ function cargarComentarios(array) {
                     <h6><i class="fas fa-user border p-2 m-2 rounded-circle bg-dark text-white"></i>${usuario.name}</h6>
                 </div>
                 <input id="description" name="description" type="text" placeholder="Escriba un comentario del producto" class="form-control my-2">
-                <button class="btn btn-primary" id="calificar" onclick="guardarComentario(parseInt(countStars),description.value, usuario.name, new Date())" type="submit">Calificar</button>   
+                <button class="btn btn-primary" id="calificar" onclick="guardarComentario(parseInt(countStars),description.value, usuario.name)" type="submit">Calificar</button>   
             </div>
         </form>
     `;
@@ -231,10 +234,11 @@ function guardarComentario(score, description, user, date) {
     let comment=[];
     Array.prototype.push.apply(comment, JSON.parse(localStorage.getItem('comment')));
     let newComment = {
+        nameProduct: JSON.parse(localStorage.getItem('nameProduct')),
         score: score,
         description: description,
         user: user,
-        dateTime: date
+        dateTime: new Date()
     };
     comment.push(newComment);
     //comment.push(newComment);
