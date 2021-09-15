@@ -64,7 +64,7 @@ function cargarInfoProducto(product) {
     let htmlContentToAppend = "";
     htmlContentToAppend += `
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-sm col-md-8">
 
                         <!--Estructura del carrusel-->
                         <div id="demo" class="carousel slide" data-ride="carousel border">
@@ -105,7 +105,7 @@ function cargarInfoProducto(product) {
                 </div>
 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-md-8 col-sm">
                         <div class="py-3">
                             <h4>Descripcion del producto</h4>
                             <p class="mb-1 text-justify">${product.description}</p>
