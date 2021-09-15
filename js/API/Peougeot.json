@@ -8,7 +8,8 @@
     "images": [
         "img/prod4.jpg",
         "img/prod4_1.jpg",
-        "img/prod4_2.jpg"
+        "img/prod4_2.jpg",
+        "img/prod4_3.jpg"
     ],
     "relatedProducts": [1, 3]
 }
