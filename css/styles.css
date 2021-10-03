@@ -156,4 +156,7 @@ a.custom-card:hover {
   color: orange;
 }
 
+.dropdown-item:hover{
+  background-color:black ;
+}
 

@@ -59,13 +59,21 @@ if(usuario==null){
 }else{
   usuario=JSON.parse(localStorage.getItem('usuario'))
   let htmlContentToAppend=`
-    <a class="d-none d-md-inline-block text-white btn" href="my-profile.html" ><i class="fas fa-user"></i>`+"  "+usuario.name+`</a>
-    
-    <button onclick="CloseSession()" class="btn px-3 mx-5 bg-dark text-white">Salir</button>
+    <div class="btn-group dropdown fixed-top col-1 ml-auto my-1">
+      <button type="button" class="btn dropdown-toggle ml-0  text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user"></i>`+"  "+usuario.name+`
+      </button>
+      <div class="dropdown-menu bg-dark">
+        <button class="dropdown-item d-none d-md-inline-block text-white" type="button" onclick="window.location.href='my-profile.html'">Mi perfil</button>
+        <button class="dropdown-item d-none d-md-inline-block text-white" type="button" onclick="window.location.href='cart.html'">Mi carrito</button>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item d-none d-md-inline-block text-white" type="button" onclick="CloseSession()">Salir</button>
+      </div>
+  </div>
+
     `
     document.getElementById('user-profile').innerHTML= htmlContentToAppend;
 }
-
   
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los

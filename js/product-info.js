@@ -85,7 +85,7 @@ function cargarInfoProducto(product) {
                     </div>
 
                     <div class="col">
-                        <div class="border rounded p-3">
+                        <div class="border rounded p-3 h-100">
                             <div class="w-100 d-flex justify-content-between my-2 p-0">
                                 <small class="text-muted">${product.soldCount} artículos vendidos</small>
                                 <p class="badge badge-info ml-auto">${product.category}</p><br>
@@ -94,13 +94,11 @@ function cargarInfoProducto(product) {
                                 <h3 class="mb-1">${product.name}</h3>
                             </div>
                             <p class="mb-1 text-right display-4">${product.cost} ${product.currency}</p>
-                            
-                            <br><br><br>
+                            <br><br>
                             <button class="btn btn-primary btn-block my-2">Comprar ahora</button>
                             <button class="btn btn-primary btn-block my-2">Agregar al carrito</button>
-                            <br>                      
+                            <br>
                         </div>
-
                     </div>
                 </div>
 
@@ -112,11 +110,10 @@ function cargarInfoProducto(product) {
                         </div>
                         <div class="py-2" id="comentarios"></div>
                     </div>
-                    <div class="col">
-                        <div class="border rounded p-3 my-3">
-                            <h4>Productos relacionados</h4>
-                            <p class="mb-1 text-justify">${product.relatedProducts}</p>
-                        </div>     
+
+                    <div class="col py-3">
+                        <h4>Productos relacionados</h4>                      
+                        ${mostrarRelatedProducts(product.relatedProducts,productsArray)}
                     </div> 
                 </div>
 
@@ -139,6 +136,33 @@ function cargarStars(number) {
         `
     };
     return aux;
+};
+
+//mostrar productos relacionados
+let productsArray=[];
+function mostrarRelatedProducts(relatedProductsArray, array){
+    let aux="";
+    for(let i=0;i<relatedProductsArray.length;i++){
+        //array[relatedProductsArray[i]].name;
+        aux+=`
+        <div class="card my-2">
+            <div class="card-body">
+                <img class="card-img-top" src="${array[relatedProductsArray[i]].imgSrc}" alt="">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">${array[relatedProductsArray[i]].name}</h4>
+                    <p class="card-text">${array[relatedProductsArray[i]].cost} ${array[relatedProductsArray[i]].currency}</p>
+                </div>
+                <button onclick="goToProduct('${array[relatedProductsArray[i]].name}')" class="btn btn-primary btn-block my-2">Ver producto</button>          
+            </div>
+        </div>
+        `
+    };
+    return aux
+};
+//agregue esta funcion que guardara el nombre del producto que hago click y redirecciona
+function goToProduct(nameProduct){
+    localStorage.setItem('nameProduct', JSON.stringify(nameProduct));
+    window.location.href="product-info.html";
 };
 
 //funcion que me da la hora en el formato que quiero
@@ -197,7 +221,7 @@ function cargarComentarios(array) {
         </form>
     `;
 
-    //agrego comentarios existentes en el json
+    //agrego comentarios existentes en el array
     for (let i = 0; i < array.length; i++) {
         let comentario = array[i];
         htmlContentToAppend += `
@@ -230,7 +254,7 @@ function checkedStars(elemento){
 
 
 
-function guardarComentario(score, description, user, date) {
+function guardarComentario(score, description, user) {
     let comment=[];
     Array.prototype.push.apply(comment, JSON.parse(localStorage.getItem('comment')));
     let newComment = {
@@ -259,16 +283,21 @@ function promedio(array) {
 
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(PRODUCT_INFO_URL_NEW).then(function (resultObj) {
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
-            cargarInfoProducto(resultObj.data)
-        }
-        getJSONData(PRODUCT_INFO_COMMENTS_URL_NEW).then(function (resultObj) {
+            productsArray=resultObj.data;
+        };
+        getJSONData(PRODUCT_INFO_URL_NEW).then(function (resultObj) {
             if (resultObj.status === "ok") {
-                cargarComentarios(resultObj.data);
+                cargarInfoProducto(resultObj.data)
             }
-        })
-    });
+            getJSONData(PRODUCT_INFO_COMMENTS_URL_NEW).then(function (resultObj) {
+                if (resultObj.status === "ok") {
+                    cargarComentarios(resultObj.data);
+                }
+            })
+        });
+    })
 });
 
 
