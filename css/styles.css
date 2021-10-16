@@ -68,16 +68,12 @@ footer p {
 }
 /*Este codigo es para el menu de navegacion*/
 /*Como sacar el subrayado*/
-nav>div>a{
-  width: 20%;
-  text-align: center;
-}
-nav>div>a:hover{
+li.nav-item:hover{
   background-color: black;
   transition: 0,5s;
   text-decoration: none;
 }
-nav>div>a:active{
+li.nav-item:active{
   background:grey;
 }
 

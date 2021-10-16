@@ -129,7 +129,31 @@ function mostrarCarrito(array){
     localStorage.setItem('articlesCart', JSON.stringify(array))
     costoPorProductos(array)
 }
+function elegirPago(){
+    let htmlContentToAppend="";
+    htmlContentToAppend=`
+    <div class="form-check d-flex justify-content-center">
+        <label class="form-check-label mx-3">
+            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-visa fa-2x"></i>
+        </label>
+        <label class="form-check-label mx-3">
+            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-paypal fa-2x"></i>
+        </label>
+        <label class="form-check-label mx-3">
+            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-mastercard fa-2x"></i>
+        </label>
+        <label class="form-check-label mx-3">
+            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-amex fa-2x"></i>
+        </label>
+        <label class="form-check-label mx-3">
+            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-amazon-pay fa-2x"></i>
+        </label>
 
+    </div>
+
+    `;
+    document.getElementById("tipoPago").innerHTML+=htmlContentToAppend;
+}
 
 function elegirEnvio(){
     let htmlContentToAppend="";
@@ -212,8 +236,8 @@ document.addEventListener("DOMContentLoaded", function(e){
                 mostrarCarrito(resultObj.data.articles);
             };
         });
-        elegirEnvio()
-    
+        elegirEnvio();
+        elegirPago()
     })
 });
 

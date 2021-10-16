@@ -49,13 +49,31 @@
     </div>
   </div>
 
-  <nav class="site-header sticky-top py-1 bg-dark">
-    <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav d-flex flex-md-row justify-content-between col">
+          <li class="nav-item col d-flex justify-content-center">
+            <a class="nav-link py-2 text-center text-white col d-md-inline-block" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item col d-flex justify-content-center">
+            <a class="nav-link py-2 text-center text-white col d-md-inline-block" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item col d-flex justify-content-center">
+            <a class="nav-link py-2 text-center text-white col d-md-inline-block" href="products.html">Productos</a>
+          </li>
+          <li class="nav-item col d-flex justify-content-center">
+            <a class="nav-link py-2 text-center text-white col d-md-inline-block" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item col d-flex justify-content-center">
+            <a class="nav-link py-2 text-center text-white col d-md-inline-block" href="cart.html">Mi carrito</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -85,6 +103,8 @@
             <h4>Forma de entrega</h4>
             <p>Elija la forma de entrega que prefiera</p>
             <hr>
+            <p>Seleccione medio de pago</p>
+            <div id="tipoPago"></div>
             <p>Seleccione tipo de envío</p>
             <div id="tipoEnvio"></div>
             <div id="products-total-cost"></div>
