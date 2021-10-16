@@ -102,8 +102,8 @@ function mostrarCarrito(array){
             <div class="d-flex col">
                 <img src="${articulo.src}" class="col-5 h-100 p-1 img-thumbnail">
                 <div class="col">
-                        <div class="d-flex inline-block">
-                            <h5 class="col-8 p-0">${articulo.name}</h6>
+                        <div class="d-md-flex inline-block">
+                            <h5 class="col-md-8 p-0">${articulo.name}</h6>
                             <div class="col justify-content-end p-0">
                                 <div class="col">
                                     <label class="" for="units">Unidades:</label>
@@ -116,7 +116,7 @@ function mostrarCarrito(array){
                             </div>                  
                         </div>
                         <div>
-                            <small>Costo por unidad: ${articulo.unitCost}</small>
+                            <small>Costo por unidad: ${articulo.unitCost} ${articulo.currency}</small>
                             <p class="mb-1">Precio: ${articulo.unitCost*articulo.count} ${articulo.currency}</p>
                         </div>
                             <button class="btn btn-secondary d-flex mr-0" onclick="deleteProduct('${articulo.name}')">Borrar producto</button>
@@ -132,23 +132,19 @@ function mostrarCarrito(array){
 function elegirPago(){
     let htmlContentToAppend="";
     htmlContentToAppend=`
-    <div class="form-check d-flex justify-content-center">
+    <div class="form-check">
         <label class="form-check-label mx-3">
-            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-visa fa-2x"></i>
+            <input type="radio" class="form-check-input" name="optradio" id="visa"><i class="fab fa-cc-visa fa-2x"></i>
         </label>
         <label class="form-check-label mx-3">
-            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-paypal fa-2x"></i>
+            <input type="radio" class="form-check-input" name="optradio" id="paypal"><i class="fab fa-cc-paypal fa-2x"></i>
         </label>
         <label class="form-check-label mx-3">
-            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-mastercard fa-2x"></i>
+            <input type="radio" class="form-check-input" name="optradio" id="mastercard"><i class="fab fa-cc-mastercard fa-2x"></i>
         </label>
         <label class="form-check-label mx-3">
-            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-amex fa-2x"></i>
+            <input type="radio" class="form-check-input" name="optradio" id="amex"><i class="fab fa-cc-amex fa-2x"></i>
         </label>
-        <label class="form-check-label mx-3">
-            <input type="radio" class="form-check-input" name="optradio" id="visa-card"><i class="fab fa-cc-amazon-pay fa-2x"></i>
-        </label>
-
     </div>
 
     `;

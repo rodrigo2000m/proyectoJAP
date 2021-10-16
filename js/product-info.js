@@ -98,7 +98,8 @@ function agregarAlCarrito(currency, name, src, unitCost){
         };
         articles=[newArticle];        
     }
-    localStorage.setItem('articlesCart', JSON.stringify(articles))
+    localStorage.setItem('articlesCart', JSON.stringify(articles));
+    alert("El producto se agregó al carrito")
 }
 
 //creo la estructura con los productos
