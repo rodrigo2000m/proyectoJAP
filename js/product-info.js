@@ -58,6 +58,48 @@ function createCarusel(array) {
     document.getElementById("indicadorLista").innerHTML += contenidoIndicador;
     document.getElementById("slideshow").innerHTML += agregarImagenes;
 }
+//agregar productos al carrito
+function agregarAlCarrito(currency, name, src, unitCost){
+    let newArticle;
+    let articles=JSON.parse(localStorage.getItem('articlesCart'));
+    let aux=0;
+    if(articles!=null){
+        for(let i=0; i<articles.length; i++){
+            if(articles[i].name===name){
+                newArticle={
+                    count:articles[i].count+1,
+                    currency:currency,
+                    name:name,
+                    src:src,
+                    unitCost: parseInt(unitCost)
+                };
+                articles[i]=newArticle;
+            }else{
+                aux=aux+1;
+            };
+            if(aux===articles.length){
+                newArticle={
+                    count:0,
+                    currency:currency,
+                    name:name,
+                    src:src,
+                    unitCost: parseInt(unitCost)
+                };
+                articles.push(newArticle);    
+            }
+        };
+    }else{
+        newArticle={
+            count:1,
+            currency:currency,
+            name:name,
+            src:src,
+            unitCost: parseInt(unitCost)
+        };
+        articles=[newArticle];        
+    }
+    localStorage.setItem('articlesCart', JSON.stringify(articles))
+}
 
 //creo la estructura con los productos
 function cargarInfoProducto(product) {
@@ -96,7 +138,7 @@ function cargarInfoProducto(product) {
                             <p class="mb-1 text-right display-4">${product.cost} ${product.currency}</p>
                             <br><br>
                             <button class="btn btn-primary btn-block my-2">Comprar ahora</button>
-                            <button class="btn btn-primary btn-block my-2">Agregar al carrito</button>
+                            <button class="btn btn-primary btn-block my-2" onclick="agregarAlCarrito('${product.currency}', '${product.name}', '${product.images[0]}', '${product.cost}')">Agregar al carrito</button>
                             <br>
                         </div>
                     </div>
@@ -299,5 +341,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
     })
 });
-
 

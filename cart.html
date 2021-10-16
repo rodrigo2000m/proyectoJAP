@@ -58,14 +58,52 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
+
+  <!--div class="container p-5">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
-  </div>
+  </div-->
+  <main role="main">
+    <div class="container mt-5">
+      <h1 class="m-auto text-center">Mi carrito</h4>
+      <div class="row my-3">
+        <div class="col-md-8 py-1">
+          <div class="col card p-2">
+            <h4>Lista de productos</h4>
+            <p>Esto son los productos en su carrito</p>
+            <hr>
+            <div id="products-in-cart">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-1">
+          <div class="col card p-2">
+            <h4>Forma de entrega</h4>
+            <p>Elija la forma de entrega que prefiera</p>
+            <hr>
+            <p>Seleccione tipo de envío</p>
+            <div id="tipoEnvio"></div>
+            <div id="products-total-cost"></div>
+            <button class="btn btn-primary btn-block" type="submit">Comprar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
