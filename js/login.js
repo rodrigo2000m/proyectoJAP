@@ -7,13 +7,19 @@
     alert("Ingrese su nombre y contraseña");
     }    else{
       let datosUsuario={
-        name: userName,
+        name:userName,
+        surname:"",
+        photo:"",
+        edad:"",
+        email: "",
+        phone:"",
         pwd: pwd
       };
       localStorage.setItem('usuario', JSON.stringify(datosUsuario));
       
     alert ("Bienvenido/a " + datosUsuario.name); 
     window.open("index.html");
+    //window.close("login.html")
     }
   }
 

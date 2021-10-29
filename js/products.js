@@ -14,21 +14,24 @@ function showProducts(array) {
             let filtro = document.getElementById("searchInputFilter").value.toUpperCase();
             if (products.name.toUpperCase().indexOf(filtro) != -1 || products.description.toUpperCase().indexOf(filtro) != -1) {
                 htmlContentToAppend += `
-        <a onclick="goToProduct('${products.name}')" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${products.imgSrc}" alt="${products.description}" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${products.name}</h4>
-                            <small class="text-muted">${products.soldCount} artículos vendidos</small>
+                <div class="col-md-4 col-sm-6 p-2">
+                    <a onclick="goToProduct('${products.name}')" class="p-2 list-group-item list-group-item-action h-100">
+                        <div class="col">
+                            <div class="col">
+                                <img src="${products.imgSrc}" alt="${products.description}" class="img-thumbnail">
+                            </div>
+                            <div class="col">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h4 class="mb-1">${products.name}</h4>
+                                    <small class="text-muted">${products.soldCount} artículos vendidos</small>
+                                </div>
+                                <p class="mb-1">${products.description}</p>
+                                <p class="mb-1 h3">${products.cost} ${products.currency}</p>
+                            </div>
                         </div>
-                        <p class="mb-1">${products.description}</p>
-                        <p class="mb-1">${products.cost} ${products.currency}</p>
+                    </a>
                     </div>
-                </div>
-            </a>
+            
         `;
             }
         }
